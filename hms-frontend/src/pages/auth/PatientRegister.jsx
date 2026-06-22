@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { authApi } from '../../api/authApi';
-import { HeartPulse, User, Lock, Stethoscope, Upload, FileText, X, Eye, EyeOff } from 'lucide-react';
+import { HeartPulse, User, Lock, Stethoscope, Upload, FileText, X, Eye, EyeOff, Mail, Phone, Shield, Calendar, MapPin, Clock, Building2 } from 'lucide-react';
 
 const PatientRegister = () => {
   const { register, handleSubmit, watch, formState: { errors, isSubmitting } } = useForm();
@@ -149,60 +149,85 @@ const PatientRegister = () => {
               <div className="space-y-5">
                 <div>
                   <label className="field-label">Full Name</label>
-                  <input
-                    {...register('fullName', { required: 'Full name is required' })}
-                    className="input-field"
-                    placeholder="e.g. Julian Vance"
-                  />
+                  <div className="relative">
+                    <input
+                      {...register('fullName', { required: 'Full name is required' })}
+                      className="input-field pl-10"
+                      placeholder="e.g. Julian Vance"
+                    />
+                    <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                      <User className="w-4 h-4" />
+                    </span>
+                  </div>
                   {errors.fullName && <p className="text-red-500 text-xs mt-1.5 ml-1">{errors.fullName.message}</p>}
                 </div>
 
                 <div>
                   <label className="field-label">Email Address</label>
-                  <input
-                    type="email"
-                    {...register('email', { required: 'Email is required' })}
-                    className="input-field"
-                    placeholder="julian.vance@example.com"
-                  />
+                  <div className="relative">
+                    <input
+                      type="email"
+                      {...register('email', { required: 'Email is required' })}
+                      className="input-field pl-10"
+                      placeholder="julian.vance@example.com"
+                    />
+                    <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                      <Mail className="w-4 h-4" />
+                    </span>
+                  </div>
                   {errors.email && <p className="text-red-500 text-xs mt-1.5 ml-1">{errors.email.message}</p>}
                 </div>
 
                 <div>
                   <label className="field-label">Phone Number</label>
-                  <input
-                    {...register('phoneNumber', { 
-                      required: 'Phone is required',
-                      pattern: { value: /^\d{10}$/, message: 'Must be 10 digits' }
-                    })}
-                    className="input-field"
-                    placeholder="+91 98765 43210"
-                  />
+                  <div className="relative">
+                    <input
+                      {...register('phoneNumber', { 
+                        required: 'Phone is required',
+                        pattern: { value: /^\d{10}$/, message: 'Must be 10 digits' }
+                      })}
+                      className="input-field pl-10"
+                      placeholder="+91 98765 43210"
+                    />
+                    <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                      <Phone className="w-4 h-4" />
+                    </span>
+                  </div>
                   {errors.phoneNumber && <p className="text-red-500 text-xs mt-1.5 ml-1">{errors.phoneNumber.message}</p>}
                 </div>
 
                 <div>
                   <label className="field-label">Unique Patient ID (Aadhaar)</label>
-                  <input
-                    {...register('aadhaarNumber', {
-                      required: 'Aadhaar is required',
-                      pattern: { value: /^\d{12}$/, message: 'Must be exactly 12 digits' }
-                    })}
-                    className="input-field tracking-widest font-mono"
-                    placeholder="XXXX-XXXX-XXXX"
-                  />
+                  <div className="relative">
+                    <input
+                      {...register('aadhaarNumber', {
+                        required: 'Aadhaar is required',
+                        pattern: { value: /^\d{12}$/, message: 'Must be exactly 12 digits' }
+                      })}
+                      className="input-field pl-10 tracking-widest font-mono"
+                      placeholder="XXXX-XXXX-XXXX"
+                    />
+                    <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                      <Shield className="w-4 h-4" />
+                    </span>
+                  </div>
                   {errors.aadhaarNumber && <p className="text-red-500 text-xs mt-1.5 ml-1">{errors.aadhaarNumber.message}</p>}
                 </div>
 
                 <div className="grid grid-cols-2 gap-5">
                   <div>
                     <label className="field-label">Age</label>
-                    <input
-                      type="number"
-                      {...register('age', { required: 'Age is required', min: { value: 1, message: 'Invalid age' } })}
-                      className="input-field"
-                      placeholder="25"
-                    />
+                    <div className="relative">
+                      <input
+                        type="number"
+                        {...register('age', { required: 'Age is required', min: { value: 1, message: 'Invalid age' } })}
+                        className="input-field pl-10"
+                        placeholder="25"
+                      />
+                      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                        <Calendar className="w-4 h-4" />
+                      </span>
+                    </div>
                     {errors.age && <p className="text-red-500 text-xs mt-1.5 ml-1">{errors.age.message}</p>}
                   </div>
                   <div>
@@ -230,53 +255,68 @@ const PatientRegister = () => {
               <div className="space-y-5">
                 <div>
                   <label className="field-label">Residential Address</label>
-                  <input
-                    {...register('address', { required: 'Address is required' })}
-                    className="input-field"
-                    placeholder="Enter your full street address..."
-                  />
+                  <div className="relative">
+                    <input
+                      {...register('address', { required: 'Address is required' })}
+                      className="input-field pl-10"
+                      placeholder="Enter your full street address..."
+                    />
+                    <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                      <MapPin className="w-4 h-4" />
+                    </span>
+                  </div>
                   {errors.address && <p className="text-red-500 text-xs mt-1.5 ml-1">{errors.address.message}</p>}
                 </div>
 
                 <div className="relative">
                   <label className="field-label">Account Password</label>
-                  <input
-                    type={showPassword ? 'text' : 'password'}
-                    {...register('password', { 
-                      required: 'Password is required',
-                      minLength: { value: 8, message: 'Min. 8 characters' }
-                    })}
-                    className="input-field pr-12"
-                    placeholder="Min. 8 characters"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 top-[38px] text-slate-400 hover:text-slate-600 transition-colors"
-                  >
-                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                  </button>
+                  <div className="relative">
+                    <input
+                      type={showPassword ? 'text' : 'password'}
+                      {...register('password', { 
+                        required: 'Password is required',
+                        minLength: { value: 8, message: 'Min. 8 characters' }
+                      })}
+                      className="input-field pr-12 pl-10"
+                      placeholder="Min. 8 characters"
+                    />
+                    <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                      <Lock className="w-4 h-4" />
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
+                    >
+                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                  </div>
                   {errors.password && <p className="text-red-500 text-xs mt-1.5 ml-1">{errors.password.message}</p>}
                 </div>
 
                 <div className="relative">
                   <label className="field-label">Confirm Password</label>
-                  <input
-                    type={showConfirm ? 'text' : 'password'}
-                    {...register('confirmPassword', {
-                      required: 'Please confirm your password',
-                      validate: value => value === password || 'Passwords do not match'
-                    })}
-                    className="input-field pr-12"
-                    placeholder="Repeat password"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowConfirm(!showConfirm)}
-                    className="absolute right-4 top-[38px] text-slate-400 hover:text-slate-600 transition-colors"
-                  >
-                    {showConfirm ? <EyeOff size={18} /> : <Eye size={18} />}
-                  </button>
+                  <div className="relative">
+                    <input
+                      type={showConfirm ? 'text' : 'password'}
+                      {...register('confirmPassword', {
+                        required: 'Please confirm your password',
+                        validate: value => value === password || 'Passwords do not match'
+                      })}
+                      className="input-field pr-12 pl-10"
+                      placeholder="Repeat password"
+                    />
+                    <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                      <Lock className="w-4 h-4" />
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setShowConfirm(!showConfirm)}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
+                      >
+                      {showConfirm ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                  </div>
                   {errors.confirmPassword && <p className="text-red-500 text-xs mt-1.5 ml-1">{errors.confirmPassword.message}</p>}
                 </div>
               </div>
@@ -993,11 +1033,16 @@ const PatientRegister = () => {
         <label className="field-label">
           Emergency Contact Name
         </label>
-         <input
-                    {...register('EmergencyContactName', { required: 'Full name is required' })}
-                    className="input-field"
-                    placeholder="e.g. Julian Vance"
-                  />
+        <div className="relative">
+          <input
+            {...register('EmergencyContactName', { required: 'Full name is required' })}
+            className="input-field pl-10"
+            placeholder="e.g. Julian Vance"
+          />
+          <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+            <User className="w-4 h-4" />
+          </span>
+        </div>
 
       </div>
 
@@ -1007,11 +1052,16 @@ const PatientRegister = () => {
           Emergency Contact Number
         </label>
 
-        <input
-          {...register("EmergencyContactNumber", { required: 'Contact number is required' })}
-          className="input-field"
-          placeholder="+91 9876943210"
-        />
+        <div className="relative">
+          <input
+            {...register("EmergencyContactNumber", { required: 'Contact number is required' })}
+            className="input-field pl-10"
+            placeholder="+91 9876943210"
+          />
+          <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+            <Phone className="w-4 h-4" />
+          </span>
+        </div>
 
       </div>
 
@@ -1021,11 +1071,16 @@ const PatientRegister = () => {
           Emergency Relationship
         </label>
 
-        <input
-          {...register("EmergencyRelationship", { required: 'Relationship is required' })}
-          className="input-field"
-          placeholder="e.g. Spouse / Sibling"
-        />
+        <div className="relative">
+          <input
+            {...register("EmergencyRelationship", { required: 'Relationship is required' })}
+            className="input-field pl-10"
+            placeholder="e.g. Spouse / Sibling"
+          />
+          <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+            <HeartPulse className="w-4 h-4" />
+          </span>
+        </div>
 
       </div>
 
@@ -1051,9 +1106,14 @@ const PatientRegister = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="btn-primary text-lg py-4 disabled:opacity-60 disabled:cursor-not-allowed"
+                className="btn-primary text-lg py-4 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
-                {isSubmitting ? 'Creating Account...' : 'Complete Registration'}
+                {isSubmitting ? (
+                  <>
+                    <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                    Creating Account...
+                  </>
+                ) : 'Complete Registration'}
               </button>
             </div>
           </form>

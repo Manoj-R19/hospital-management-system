@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { authApi } from '../../api/authApi';
-import { Stethoscope, User, Lock, Building2, GraduationCap, Upload, FileText, X, Eye, EyeOff } from 'lucide-react';
+import { Stethoscope, User, Lock, Building2, GraduationCap, Upload, FileText, X, Eye, EyeOff, Mail, Phone, MapPin, Clock } from 'lucide-react';
 
 const DoctorRegister = () => {
   const { register, handleSubmit, watch, formState: { errors, isSubmitting } } = useForm();
@@ -99,35 +99,50 @@ const DoctorRegister = () => {
               <div className="space-y-5">
                 <div>
                   <label className="field-label">Full Name (with Title)</label>
-                  <input
-                    {...register('fullName', { required: 'Full name is required' })}
-                    className="input-field"
-                    placeholder="e.g. Dr. Priya Sharma"
-                  />
+                  <div className="relative">
+                    <input
+                      {...register('fullName', { required: 'Full name is required' })}
+                      className="input-field pl-10"
+                      placeholder="e.g. Dr. Priya Sharma"
+                    />
+                    <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                      <User className="w-4 h-4" />
+                    </span>
+                  </div>
                   {errors.fullName && <p className="text-red-500 text-xs mt-1.5 ml-1">{errors.fullName.message}</p>}
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
                     <label className="field-label">Email Address</label>
-                    <input
-                      type="email"
-                      {...register('email', { required: 'Email is required' })}
-                      className="input-field"
-                      placeholder="dr.priya@hospital.com"
-                    />
+                    <div className="relative">
+                      <input
+                        type="email"
+                        {...register('email', { required: 'Email is required' })}
+                        className="input-field pl-10"
+                        placeholder="dr.priya@hospital.com"
+                      />
+                      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                        <Mail className="w-4 h-4" />
+                      </span>
+                    </div>
                     {errors.email && <p className="text-red-500 text-xs mt-1.5 ml-1">{errors.email.message}</p>}
                   </div>
                   <div>
                     <label className="field-label">Phone Number</label>
-                    <input
-                      {...register('phoneNumber', { 
-                        required: 'Phone is required',
-                        pattern: { value: /^\d{10}$/, message: 'Must be 10 digits' }
-                      })}
-                      className="input-field"
-                      placeholder="+91 98765 43210"
-                    />
+                    <div className="relative">
+                      <input
+                        {...register('phoneNumber', { 
+                          required: 'Phone is required',
+                          pattern: { value: /^\d{10}$/, message: 'Must be 10 digits' }
+                        })}
+                        className="input-field pl-10"
+                        placeholder="+91 98765 43210"
+                      />
+                      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                        <Phone className="w-4 h-4" />
+                      </span>
+                    </div>
                     {errors.phoneNumber && <p className="text-red-500 text-xs mt-1.5 ml-1">{errors.phoneNumber.message}</p>}
                   </div>
                 </div>
@@ -145,142 +160,101 @@ const DoctorRegister = () => {
 
               <div className="space-y-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                 <div>
-  <label className="field-label">Qualification</label>
-
-  <select
-    {...register("qualification", {
-      required: "Qualification is required"
-    })}
-    className="input-field"
-  >
-    <option value="">Select Qualification</option>
-
-    <option>MBBS</option>
-
-    <option>MBBS, MD</option>
-
-    <option>MBBS, MS</option>
-
-    <option>MBBS, DM</option>
-
-    <option>MBBS, MCh</option>
-
-    <option>BDS</option>
-
-    <option>BDS, MDS</option>
-
-    <option>BAMS</option>
-
-    <option>BHMS</option>
-
-    <option>BUMS</option>
-
-    <option>BNYS</option>
-
-    <option>MD</option>
-
-    <option>MS</option>
-
-    <option>DM</option>
-
-    <option>MCh</option>
-
-    <option>DNB</option>
-
-    <option>PhD</option>
-
-  </select>
-
-  {errors.qualification && (
-    <p className="text-red-500 text-xs mt-1.5 ml-1">
-      {errors.qualification.message}
-    </p>
-  )}
-</div>
-<div>
-<div>
-  <label className="field-label">Specialization</label>
-
-  <select
-    {...register("specialization", {
-      required: "Specialization is required"
-    })}
-    className="input-field"
-  >
-    <option value="">Select Specialization</option>
-
-    <option>General Physician</option>
-
-    <option>Cardiology</option>
-
-    <option>Neurology</option>
-
-    <option>Orthopedics</option>
-
-    <option>Dermatology</option>
-
-    <option>Pediatrics</option>
-
-    <option>Gynecology</option>
-
-    <option>ENT</option>
-
-    <option>Oncology</option>
-
-    <option>Psychiatry</option>
-
-    <option>Nephrology</option>
-
-    <option>Urology</option>
-
-    <option>Pulmonology</option>
-
-    <option>Gastroenterology</option>
-
-    <option>Ophthalmology</option>
-
-    <option>Dentistry</option>
-
-    <option>Anesthesiology</option>
-
-    <option>Radiology</option>
-
-    <option>Pathology</option>
-
-    <option>Emergency Medicine</option>
-
-    <option>Family Medicine</option>
-
-    <option>Endocrinology</option>
-
-    <option>Rheumatology</option>
-
-    <option>Plastic Surgery</option>
-
-    <option>Neurosurgery</option>
-
-    <option>Cardiothoracic Surgery</option>
-
-  </select>
-
-  {errors.specialization && (
-    <p className="text-red-500 text-xs mt-1.5 ml-1">
-      {errors.specialization.message}
-    </p>
-  )}
-</div>
+                  <div>
+                    <label className="field-label">Qualification</label>
+                    <div className="relative">
+                      <select
+                        {...register("qualification", {
+                          required: "Qualification is required"
+                        })}
+                        className="input-field pl-10 text-slate-700"
+                      >
+                        <option value="">Select Qualification</option>
+                        <option>MBBS</option>
+                        <option>MBBS, MD</option>
+                        <option>MBBS, MS</option>
+                        <option>MBBS, DM</option>
+                        <option>MBBS, MCh</option>
+                        <option>BDS</option>
+                        <option>BDS, MDS</option>
+                        <option>BAMS</option>
+                        <option>BHMS</option>
+                        <option>BUMS</option>
+                        <option>BNYS</option>
+                        <option>MD</option>
+                        <option>MS</option>
+                        <option>DM</option>
+                        <option>MCh</option>
+                        <option>DNB</option>
+                        <option>PhD</option>
+                      </select>
+                      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                        <GraduationCap className="w-4 h-4" />
+                      </span>
+                    </div>
+                    {errors.qualification && (
+                      <p className="text-red-500 text-xs mt-1.5 ml-1">
+                        {errors.qualification.message}
+                      </p>
+                    )}
+                  </div>
+                  <div>
+                    <label className="field-label">Specialization</label>
+                    <div className="relative">
+                      <select
+                        {...register("specialization", {
+                          required: "Specialization is required"
+                        })}
+                        className="input-field pl-10 text-slate-700"
+                      >
+                        <option value="">Select Specialization</option>
+                        <option>General Physician</option>
+                        <option>Cardiology</option>
+                        <option>Neurology</option>
+                        <option>Orthopedics</option>
+                        <option>Dermatology</option>
+                        <option>Pediatrics</option>
+                        <option>Gynecology</option>
+                        <option>ENT</option>
+                        <option>Oncology</option>
+                        <option>Psychiatry</option>
+                        <option>Nephrology</option>
+                        <option>Urology</option>
+                        <option>Pulmonology</option>
+                        <option>Gastroenterology</option>
+                        <option>Ophthalmology</option>
+                        <option>Dentistry</option>
+                        <option>Anesthesiology</option>
+                        <option>Radiology</option>
+                        <option>Pathology</option>
+                        <option>Emergency Medicine</option>
+                        <option>Family Medicine</option>
+                        <option>Endocrinology</option>
+                        <option>Rheumatology</option>
+                        <option>Plastic Surgery</option>
+                        <option>Neurosurgery</option>
+                        <option>Cardiothoracic Surgery</option>
+                      </select>
+                      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                        <Stethoscope className="w-4 h-4" />
+                      </span>
+                    </div>
                     {errors.specialization && <p className="text-red-500 text-xs mt-1.5 ml-1">{errors.specialization.message}</p>}
                   </div>
                 </div>
 
                 <div>
                   <label className="field-label">Government Registration Number</label>
-                  <input
-                    {...register('govtRegNumber', { required: 'Registration number is required' })}
-                    className="input-field font-mono tracking-wider"
-                    placeholder="e.g. MCI-2024-XXXXX"
-                  />
+                  <div className="relative">
+                    <input
+                      {...register('govtRegNumber', { required: 'Registration number is required' })}
+                      className="input-field pl-10 font-mono tracking-wider"
+                      placeholder="e.g. MCI-2024-XXXXX"
+                    />
+                    <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                      <FileText className="w-4 h-4" />
+                    </span>
+                  </div>
                   {errors.govtRegNumber && <p className="text-red-500 text-xs mt-1.5 ml-1">{errors.govtRegNumber.message}</p>}
                 </div>
 
@@ -342,77 +316,94 @@ const DoctorRegister = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
                     <label className="field-label">Hospital / Clinic Name</label>
-                    <input
-                      {...register('hospitalName', { required: 'Required' })}
-                      className="input-field"
-                      placeholder="e.g. CureWell Central"
-                    />
+                    <div className="relative">
+                      <input
+                        {...register('hospitalName', { required: 'Required' })}
+                        className="input-field pl-10"
+                        placeholder="e.g. CureWell Central"
+                      />
+                      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                        <Building2 className="w-4 h-4" />
+                      </span>
+                    </div>
                   </div>
                   <div>
                     <label className="field-label">Full Address</label>
-                    <input
-                      {...register('hospitalAddress', { required: 'Required' })}
-                      className="input-field"
-                      placeholder="Location of practice"
-                    />
+                    <div className="relative">
+                      <input
+                        {...register('hospitalAddress', { required: 'Required' })}
+                        className="input-field pl-10"
+                        placeholder="Location of practice"
+                      />
+                      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                        <MapPin className="w-4 h-4" />
+                      </span>
+                    </div>
                   </div>
                   <div>
                     <label className="field-label">Opening Time</label>
-                    <input type="time" {...register('hospitalOpeningTime', { required: true })} className="input-field" />
+                    <div className="relative">
+                      <input type="time" {...register('hospitalOpeningTime', { required: true })} className="input-field pl-10" />
+                      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                        <Clock className="w-4 h-4" />
+                      </span>
+                    </div>
                   </div>
                   <div>
                     <label className="field-label">Closing Time</label>
-                    <input type="time" {...register('hospitalClosingTime', { required: true })} className="input-field" />
+                    <div className="relative">
+                      <input type="time" {...register('hospitalClosingTime', { required: true })} className="input-field pl-10" />
+                      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                        <Clock className="w-4 h-4" />
+                      </span>
+                    </div>
                   </div>
                 </div>
                 <div>
                   <label className="field-label">Facilities Available</label>
                   <div>
-  <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-3">
-
-    {[
-      "Emergency",
-      "ICU",
-      "NICU",
-      "Blood Bank",
-      "Ambulance",
-      "Pharmacy",
-      "Laboratory",
-      "MRI",
-      "CT Scan",
-      "PET Scan",
-      "X-Ray",
-      "Ultrasound",
-      "Dialysis",
-      "Operation Theatre",
-      "Cath Lab",
-      "Physiotherapy",
-      "Vaccination",
-      "ECG",
-      "ECHO",
-      "Ventilator",
-      "Trauma Care",
-      "24x7 Pharmacy"
-    ].map((facility) => (
-      <label
-        key={facility}
-        className="flex items-center gap-2 cursor-pointer"
-      >
-        <input
-          type="checkbox"
-          value={facility}
-          {...register("facilities")}
-          className="w-4 h-4 text-brand-600 rounded"
-        />
-
-        <span className="text-sm text-slate-700">
-          {facility}
-        </span>
-      </label>
-    ))}
-
-  </div>
-</div>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-3">
+                      {[
+                        "Emergency",
+                        "ICU",
+                        "NICU",
+                        "Blood Bank",
+                        "Ambulance",
+                        "Pharmacy",
+                        "Laboratory",
+                        "MRI",
+                        "CT Scan",
+                        "PET Scan",
+                        "X-Ray",
+                        "Ultrasound",
+                        "Dialysis",
+                        "Operation Theatre",
+                        "Cath Lab",
+                        "Physiotherapy",
+                        "Vaccination",
+                        "ECG",
+                        "ECHO",
+                        "Ventilator",
+                        "Trauma Care",
+                        "24x7 Pharmacy"
+                      ].map((facility) => (
+                        <label
+                          key={facility}
+                          className="flex items-center gap-2 cursor-pointer"
+                        >
+                          <input
+                            type="checkbox"
+                            value={facility}
+                            {...register("facilities")}
+                            className="w-4 h-4 text-brand-600 rounded"
+                          />
+                          <span className="text-sm text-slate-700">
+                            {facility}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -429,37 +420,47 @@ const DoctorRegister = () => {
               <div className="space-y-5">
                 <div className="relative">
                   <label className="field-label">Account Password</label>
-                  <input
-                    type={showPassword ? 'text' : 'password'}
-                    {...register('password', {
-                      required: 'Password is required',
-                      minLength: { value: 8, message: 'Min. 8 characters' }
-                    })}
-                    className="input-field pr-12"
-                    placeholder="Min. 8 characters"
-                  />
-                  <button type="button" onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 top-[38px] text-slate-400 hover:text-slate-600 transition-colors">
-                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                  </button>
+                  <div className="relative">
+                    <input
+                      type={showPassword ? 'text' : 'password'}
+                      {...register('password', {
+                        required: 'Password is required',
+                        minLength: { value: 8, message: 'Min. 8 characters' }
+                      })}
+                      className="input-field pr-12 pl-10"
+                      placeholder="Min. 8 characters"
+                    />
+                    <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                      <Lock className="w-4 h-4" />
+                    </span>
+                    <button type="button" onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors">
+                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                  </div>
                   {errors.password && <p className="text-red-500 text-xs mt-1.5 ml-1">{errors.password.message}</p>}
                 </div>
 
                 <div className="relative">
                   <label className="field-label">Confirm Password</label>
-                  <input
-                    type={showConfirm ? 'text' : 'password'}
-                    {...register('confirmPassword', {
-                      required: 'Please confirm password',
-                      validate: v => v === password || 'Passwords do not match'
-                    })}
-                    className="input-field pr-12"
-                    placeholder="Repeat password"
-                  />
-                  <button type="button" onClick={() => setShowConfirm(!showConfirm)}
-                    className="absolute right-4 top-[38px] text-slate-400 hover:text-slate-600 transition-colors">
-                    {showConfirm ? <EyeOff size={18} /> : <Eye size={18} />}
-                  </button>
+                  <div className="relative">
+                    <input
+                      type={showConfirm ? 'text' : 'password'}
+                      {...register('confirmPassword', {
+                        required: 'Please confirm password',
+                        validate: v => v === password || 'Passwords do not match'
+                      })}
+                      className="input-field pr-12 pl-10"
+                      placeholder="Repeat password"
+                    />
+                    <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                      <Lock className="w-4 h-4" />
+                    </span>
+                    <button type="button" onClick={() => setShowConfirm(!showConfirm)}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors">
+                      {showConfirm ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                  </div>
                   {errors.confirmPassword && <p className="text-red-500 text-xs mt-1.5 ml-1">{errors.confirmPassword.message}</p>}
                 </div>
               </div>
@@ -485,8 +486,13 @@ const DoctorRegister = () => {
               </label>
               {errors.consent && <p className="text-red-500 text-xs ml-8">{errors.consent.message}</p>}
 
-              <button type="submit" disabled={isSubmitting} className="btn-teal text-lg py-4 disabled:opacity-60 disabled:cursor-not-allowed">
-                {isSubmitting ? 'Submitting...' : 'Submit Registration'}
+              <button type="submit" disabled={isSubmitting} className="btn-teal text-lg py-4 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                {isSubmitting ? (
+                  <>
+                    <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                    Submitting...
+                  </>
+                ) : 'Submit Registration'}
               </button>
             </div>
           </form>

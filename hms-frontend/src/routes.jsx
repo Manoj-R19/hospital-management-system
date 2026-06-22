@@ -42,6 +42,7 @@ import PatientVisitHistory from './pages/patient/PatientHistory';
 import PatientNotifications from './pages/patient/PatientNotifications';
 import PatientSupport from './pages/patient/PatientSupport';
 import PatientSettings from './pages/patient/PatientSettings';
+import RegisterRoleSelection from './pages/auth/RegisterRoleSelection';
 
 import BloodBankDashboard from './pages/bloodbank/BloodBankDashboard';
 import EmergencyRequestPage from './pages/bloodbank/EmergencyRequestPage';
@@ -113,6 +114,7 @@ const AppRoutes = () => {
       <Route path="/register/admin" element={<AdminRegister />} />
       <Route path="/register/doctor" element={<DoctorRegister />} />
       <Route path="/register/patient" element={<PatientRegister />} />
+      <Route path="/register" element={<RegisterRoleSelection />} />
 
       <Route path="/admin/*" element={
         <ProtectedRoute allowedRoles={['ADMIN']}>

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { authApi } from '../../api/authApi';
-import { Activity, User, Lock, Shield, Eye, EyeOff } from 'lucide-react';
+import { Activity, User, Lock, Shield, Eye, EyeOff, Mail, Phone, Building2 } from 'lucide-react';
 
 const AdminRegister = () => {
   const { register, handleSubmit, watch, formState: { errors, isSubmitting } } = useForm();
@@ -78,35 +78,50 @@ const AdminRegister = () => {
               <div className="space-y-5">
                 <div>
                   <label className="field-label">Full Name</label>
-                  <input
-                    {...register('fullName', { required: 'Full name is required' })}
-                    className="input-field"
-                    placeholder="e.g. Hospital Administrator"
-                  />
+                  <div className="relative">
+                    <input
+                      {...register('fullName', { required: 'Full name is required' })}
+                      className="input-field pl-10"
+                      placeholder="e.g. Hospital Administrator"
+                    />
+                    <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                      <User className="w-4 h-4" />
+                    </span>
+                  </div>
                   {errors.fullName && <p className="text-red-500 text-xs mt-1.5 ml-1">{errors.fullName.message}</p>}
                 </div>
 
                 <div>
                   <label className="field-label">Official Email Address</label>
-                  <input
-                    type="email"
-                    {...register('email', { required: 'Email is required' })}
-                    className="input-field"
-                    placeholder="admin@curewell.hospital"
-                  />
+                  <div className="relative">
+                    <input
+                      type="email"
+                      {...register('email', { required: 'Email is required' })}
+                      className="input-field pl-10"
+                      placeholder="admin@curewell.hospital"
+                    />
+                    <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                      <Mail className="w-4 h-4" />
+                    </span>
+                  </div>
                   {errors.email && <p className="text-red-500 text-xs mt-1.5 ml-1">{errors.email.message}</p>}
                 </div>
 
                 <div>
                   <label className="field-label">Phone Number</label>
-                  <input
-                    {...register('phoneNumber', { 
-                      required: 'Phone number is required',
-                      pattern: { value: /^\d{10}$/, message: 'Must be 10 digits' }
-                    })}
-                    className="input-field"
-                    placeholder="+91 98765 43210"
-                  />
+                  <div className="relative">
+                    <input
+                      {...register('phoneNumber', { 
+                        required: 'Phone number is required',
+                        pattern: { value: /^\d{10}$/, message: 'Must be 10 digits' }
+                      })}
+                      className="input-field pl-10"
+                      placeholder="+91 98765 43210"
+                    />
+                    <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                      <Phone className="w-4 h-4" />
+                    </span>
+                  </div>
                   {errors.phoneNumber && <p className="text-red-500 text-xs mt-1.5 ml-1">{errors.phoneNumber.message}</p>}
                 </div>
               </div>
@@ -132,13 +147,18 @@ const AdminRegister = () => {
         Hospital Name
       </label>
 
-      <input
-        {...register("hospitalName", {
-          required: "Hospital name is required"
-        })}
-        className="input-field"
-        placeholder="ABC Multi Speciality Hospital"
-      />
+      <div className="relative">
+        <input
+          {...register("hospitalName", {
+            required: "Hospital name is required"
+          })}
+          className="input-field pl-10"
+          placeholder="ABC Multi Speciality Hospital"
+        />
+        <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+          <Building2 className="w-4 h-4" />
+        </span>
+      </div>
 
       {errors.hospitalName && (
         <p className="text-red-500 text-xs mt-1.5 ml-1">
@@ -154,25 +174,30 @@ const AdminRegister = () => {
         Hospital Type
       </label>
 
-      <select
-        {...register("hospitalType", {
-          required: "Hospital type is required"
-        })}
-        className="input-field"
-      >
-        <option value="">Select Hospital Type</option>
+      <div className="relative">
+        <select
+          {...register("hospitalType", {
+            required: "Hospital type is required"
+          })}
+          className="input-field pl-10 text-slate-700"
+        >
+          <option value="">Select Hospital Type</option>
 
-        <option>Government Hospital</option>
+          <option>Government Hospital</option>
 
-        <option>Private Hospital</option>
+          <option>Private Hospital</option>
 
-        <option>Multi Speciality Hospital</option>
+          <option>Multi Speciality Hospital</option>
 
-        <option>Clinic</option>
+          <option>Clinic</option>
 
-        <option>Diagnostic Centre</option>
+          <option>Diagnostic Centre</option>
 
-      </select>
+        </select>
+        <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+          <Activity className="w-4 h-4" />
+        </span>
+      </div>
 
       {errors.hospitalType && (
         <p className="text-red-500 text-xs mt-1.5 ml-1">
@@ -188,14 +213,19 @@ const AdminRegister = () => {
         Hospital Email
       </label>
 
-      <input
-        type="email"
-        {...register("hospitalEmail", {
-          required: "Hospital email is required"
-        })}
-        className="input-field"
-        placeholder="hospital@gmail.com"
-      />
+      <div className="relative">
+        <input
+          type="email"
+          {...register("hospitalEmail", {
+            required: "Hospital email is required"
+          })}
+          className="input-field pl-10"
+          placeholder="hospital@gmail.com"
+        />
+        <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+          <Mail className="w-4 h-4" />
+        </span>
+      </div>
 
       {errors.hospitalEmail && (
         <p className="text-red-500 text-xs mt-1.5 ml-1">
@@ -211,17 +241,22 @@ const AdminRegister = () => {
         Hospital Phone Number
       </label>
 
-      <input
-        {...register("hospitalPhone", {
-          required: "Hospital phone number is required",
-          pattern: {
-            value: /^[0-9]{10}$/,
-            message: "Must be 10 digits"
-          }
-        })}
-        className="input-field"
-        placeholder="+91 9876543210"
-      />
+      <div className="relative">
+        <input
+          {...register("hospitalPhone", {
+            required: "Hospital phone number is required",
+            pattern: {
+              value: /^[0-9]{10}$/,
+              message: "Must be 10 digits"
+            }
+          })}
+          className="input-field pl-10"
+          placeholder="+91 9876543210"
+        />
+        <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+          <Phone className="w-4 h-4" />
+        </span>
+      </div>
 
       {errors.hospitalPhone && (
         <p className="text-red-500 text-xs mt-1.5 ml-1">
@@ -237,13 +272,18 @@ const AdminRegister = () => {
         Hospital Registration Number
       </label>
 
-      <input
-        {...register("registrationNumber", {
-          required: "Registration number is required"
-        })}
-        className="input-field"
-        placeholder="REG-2026-00001"
-      />
+      <div className="relative">
+        <input
+          {...register("registrationNumber", {
+            required: "Registration number is required"
+          })}
+          className="input-field pl-10"
+          placeholder="REG-2026-00001"
+        />
+        <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+          <Shield className="w-4 h-4" />
+        </span>
+      </div>
 
       {errors.registrationNumber && (
         <p className="text-red-500 text-xs mt-1.5 ml-1">
@@ -259,13 +299,18 @@ const AdminRegister = () => {
         Hospital License Number
       </label>
 
-      <input
-        {...register("licenseNumber", {
-          required: "License number is required"
-        })}
-        className="input-field"
-        placeholder="LIC-2026-00001"
-      />
+      <div className="relative">
+        <input
+          {...register("licenseNumber", {
+            required: "License number is required"
+          })}
+          className="input-field pl-10"
+          placeholder="LIC-2026-00001"
+        />
+        <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+          <Shield className="w-4 h-4" />
+        </span>
+      </div>
 
       {errors.licenseNumber && (
         <p className="text-red-500 text-xs mt-1.5 ml-1">
@@ -291,37 +336,47 @@ const AdminRegister = () => {
 
                 <div className="relative">
                   <label className="field-label">Account Password</label>
-                  <input
-                    type={showPassword ? 'text' : 'password'}
-                    {...register('password', { 
-                      required: 'Password is required',
-                      minLength: { value: 8, message: 'Min. 8 characters' }
-                    })}
-                    className="input-field pr-12"
-                    placeholder="Min. 8 characters"
-                  />
-                  <button type="button" onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 top-[38px] text-slate-400 hover:text-slate-600 transition-colors">
-                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                  </button>
+                  <div className="relative">
+                    <input
+                      type={showPassword ? 'text' : 'password'}
+                      {...register('password', { 
+                        required: 'Password is required',
+                        minLength: { value: 8, message: 'Min. 8 characters' }
+                      })}
+                      className="input-field pr-12 pl-10"
+                      placeholder="Min. 8 characters"
+                    />
+                    <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                      <Lock className="w-4 h-4" />
+                    </span>
+                    <button type="button" onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors">
+                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                  </div>
                   {errors.password && <p className="text-red-500 text-xs mt-1.5 ml-1">{errors.password.message}</p>}
                 </div>
 
                 <div className="relative">
                   <label className="field-label">Confirm Password</label>
-                  <input
-                    type={showConfirm ? 'text' : 'password'}
-                    {...register('confirmPassword', {
-                      required: 'Please confirm your password',
-                      validate: v => v === password || 'Passwords do not match'
-                    })}
-                    className="input-field pr-12"
-                    placeholder="Repeat password"
-                  />
-                  <button type="button" onClick={() => setShowConfirm(!showConfirm)}
-                    className="absolute right-4 top-[38px] text-slate-400 hover:text-slate-600 transition-colors">
-                    {showConfirm ? <EyeOff size={18} /> : <Eye size={18} />}
-                  </button>
+                  <div className="relative">
+                    <input
+                      type={showConfirm ? 'text' : 'password'}
+                      {...register('confirmPassword', {
+                        required: 'Please confirm your password',
+                        validate: v => v === password || 'Passwords do not match'
+                      })}
+                      className="input-field pr-12 pl-10"
+                      placeholder="Repeat password"
+                    />
+                    <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                      <Lock className="w-4 h-4" />
+                    </span>
+                    <button type="button" onClick={() => setShowConfirm(!showConfirm)}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors">
+                      {showConfirm ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                  </div>
                   {errors.confirmPassword && <p className="text-red-500 text-xs mt-1.5 ml-1">{errors.confirmPassword.message}</p>}
                 </div>
               </div>
@@ -342,8 +397,13 @@ const AdminRegister = () => {
               </label>
               {errors.consent && <p className="text-red-500 text-xs ml-8">{errors.consent.message}</p>}
 
-              <button type="submit" disabled={isSubmitting} className="btn-primary text-lg py-4 disabled:opacity-60 disabled:cursor-not-allowed">
-                {isSubmitting ? 'Creating Account...' : 'Create Admin Account'}
+              <button type="submit" disabled={isSubmitting} className="btn-primary text-lg py-4 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                {isSubmitting ? (
+                  <>
+                    <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                    Creating Account...
+                  </>
+                ) : 'Create Admin Account'}
               </button>
             </div>
           </form>
